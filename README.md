@@ -52,6 +52,7 @@ plt.show()
 
 ## Output:
 ![Screenshot (10)](https://user-images.githubusercontent.com/93427345/162380390-3c4e8dc5-ca6c-47dc-a0d1-95d554a27365.png)
+
 ![Screenshot (11)](https://user-images.githubusercontent.com/93427345/162380420-445bca22-ad81-413a-83b4-50bf21c17711.png)
 
 
