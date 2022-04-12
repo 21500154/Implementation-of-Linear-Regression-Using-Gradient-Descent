@@ -8,14 +8,13 @@ To write a program to implement the linear regression using gradient descent.
 2. Anaconda – Python 3.7 Installation / Moodle-Code Runner
 
 ## Algorithm:
-```
-1. Import the standard Libraries.
-2. Set variables for assigning dataset values.
-3. Import linear regression from sklearn.
-4. Assign the points for representing in the graph
-5. Predict the regression for marks by using the representation of the graph.
-6. Compare the graphs and hence we obtained the linear regression for the given datas. 
-```
+
+1. Use the standard libraries in python for Gradient Design.
+2. Upload the dataset and check any null value using .isnull() function.
+3. Declare the default values for linear regression.
+4. Calculate the loss usinng Mean Square Error.
+5. Predict the value of y.
+6. Plot the graph respect to hours and scores using scatter plot function.
 
 ## Program:
 ```
@@ -23,39 +22,47 @@ To write a program to implement the linear regression using gradient descent.
 Program to implement the linear regression using gradient descent.
 Developed by:Dharshini D.S
 RegisterNumber: 212221230022
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-dataset = pd.read_csv('student_scores.csv')
-dataset.head()
-X=dataset.iloc[:,:-1].values
-Y=dataset.iloc[:,1].values
-from sklearn.model_selection import train_test_split
-X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size = 1/3,random_state = 0)
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(X_train,Y_train)
-Y_pred = regressor.predict(X_test)
-plt.scatter(X_train,Y_train,color="blue")
-plt.plot(X_train,regressor.predict(X_train),color="brown")
-plt.title("Hours vs Scores (Training Set)")
-plt.xlabel("Hours")
+data = pd.read_csv("student_scores.csv")
+data.head()
+data.isnull().sum()
+x = data.Hours
+x.head()
+y = data.Scores
+y.head()
+n = len(x)
+m = 0
+c = 0
+L = 0.001
+loss = []
+for i in range(10000):
+    ypred = m*x + c
+    MSE = (1/n) * sum((ypred - y)*2)
+    dm = (2/n) * sum(x*(ypred-y))
+    dc = (2/n) * sum(ypred-y)
+    c = c-L*dc
+    m = m-L*dm
+    loss.append(MSE)
+    #print(m)
+print(m,c)
+y_pred = m*x + c
+plt.scatter(x,y,color = "red")
+plt.plot(x,y_pred)
+plt.xlabel("Study hours")
 plt.ylabel("Scores")
-plt.show()
-plt.scatter(X_test,Y_test,color="blue")
-plt.plot(X_train,regressor.predict(X_train),color="brown") 
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
+plt.title("Study hours vs. Scores")
+plt.plot(loss)
+plt.xlabel("Iterations")
+plt.ylabel("loss")
 */
 ```
 
 ## Output:
-![Screenshot (10)](https://user-images.githubusercontent.com/93427345/162380390-3c4e8dc5-ca6c-47dc-a0d1-95d554a27365.png)
-
-![Screenshot (11)](https://user-images.githubusercontent.com/93427345/162380420-445bca22-ad81-413a-83b4-50bf21c17711.png)
-
-
+![Screenshot (15)](https://user-images.githubusercontent.com/93427345/162916681-900d88b2-879d-48e7-bb72-64a81e6860fc.png)
+![Screenshot (16)](https://user-images.githubusercontent.com/93427345/162916742-fdfd0526-4a00-4ae9-bed4-cf7fc1e6f746.png)
 
 ## Result:
 Thus the program to implement the linear regression using gradient descent is written and verified using python programming.
